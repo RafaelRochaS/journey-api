@@ -2,6 +2,7 @@ package producers
 
 import (
 	"github.com/RafaelRochaS/journey-api/models"
+	"github.com/RafaelRochaS/journey-api/utils"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
@@ -19,8 +20,8 @@ func NewKafkaProducer() (EventProducer, error) {
 
 func (kp *KafkaProducer) createProducer() error {
 	k, err := kafka.NewProducer(&kafka.ConfigMap{
-		"bootstrap.servers": "host1:9092,host2:9092",
-		"client.id":         "journey-api-1",
+		"bootstrap.servers": utils.KAFKA_HOSTS,
+		"client.id":         utils.KAFKA_CLIENT_ID,
 		"acks":              "all"})
 
 	kp.kafkaInstance = k
