@@ -11,6 +11,7 @@ import (
 var HOST string
 var KAFKA_HOSTS string
 var KAFKA_CLIENT_ID string
+var KAFKA_TOPIC string
 var TRUSTED_PROXIES string
 var PORT int
 
@@ -23,6 +24,7 @@ func LoadEnvs() {
 	HOST = os.Getenv("HOST")
 	KAFKA_HOSTS = os.Getenv("KAFKA_HOSTS")
 	KAFKA_CLIENT_ID = os.Getenv("KAFKA_CLIENT_ID")
+	KAFKA_TOPIC = os.Getenv("KAFKA_TOPIC")
 	TRUSTED_PROXIES = os.Getenv("TRUSTED_PROXIES")
 	PORT, err = strconv.Atoi(os.Getenv("PORT"))
 
