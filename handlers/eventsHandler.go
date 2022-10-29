@@ -3,9 +3,11 @@ package handlers
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/RafaelRochaS/journey-api/models"
 	"github.com/gin-gonic/gin"
+	"github.com/lithammer/shortuuid"
 )
 
 func HandleEvents(rg *gin.RouterGroup) {
@@ -23,12 +25,20 @@ func HandleEvents(rg *gin.RouterGroup) {
 			return
 		}
 
+		eventObjectDto := &models.EventObjectDto{
+			Event:     event,
+			Timestamp: time.Now().In(time.UTC),
+			TrxId:     shortuuid.New(),
+		}
+
 		log.Println("Received event: ")
 		log.Println("Sensor type: ", event.SensorType)
 		log.Println("Measure 1: ", event.Measure1)
 		log.Println("Measure 2: ", event.Measure2)
 		log.Println("Measure 3: ", event.Measure3)
 		log.Println("Measure 4: ", event.Measure4)
+		log.Println("Time: ", eventObjectDto.Timestamp)
+		log.Println("TrxID: ", eventObjectDto.TrxId)
 
 		ctx.JSON(http.StatusAccepted, "Event received. Added to processing queue.")
 	})

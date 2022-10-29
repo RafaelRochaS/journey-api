@@ -13,4 +13,5 @@ type EventObject struct {
 type EventObjectDto struct {
 	Event     EventObject
 	Timestamp time.Time
+	TrxId     string
 }
